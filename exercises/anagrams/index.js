@@ -16,27 +16,23 @@
 // /////////////////////////////////////////////////////////////////////////////
 // / ////////////////////////////////
 let anagrams = (str1, str2) => {
-  let str1Map = createCharMap(str1);
-  let str2Map = createCharMap(str2);
-  if (Object.keys(str1Map).length !== Object.keys(str2Map).length) {
-    return false;
-  } else {
-    for (let char in str1Map) {
-      if (str1Map[char] !== str2Map[char]) {
-        return false
-      }
-
-    }
-  }
-  return true;
+  return cleanString(str1) === cleanString(str2);
 }
 
-const createCharMap = str => {
-  let charMap = {};
-  for (let char of str.replace(/[^\w]/g, '').toLowerCase()) {
-    charMap[char] = charMap[char] + 1 || 1
-  }
-  return charMap;
+const cleanString = str => {
+  return str
+    .replace(/[^\w]/g, '')
+    .toLowerCase()
+    .split('')
+    .sort()
+    .join();
 }
-
 module.exports = anagrams;
+
+// let anagrams = (str1, str2) => {   let str1Map = createCharMap(str1);   let
+// str2Map = createCharMap(str2);   if (Object.keys(str1Map).length !==
+// Object.keys(str2Map).length) {     return false;   } else {     for (let char
+// in str1Map) {       if (str1Map[char] !== str2Map[char]) {         return
+// false       }     }   }   return true; } const createCharMap = str => {   let
+// charMap = {};   for (let char of str.replace(/[^\w]/g, '').toLowerCase()) {
+// charMap[char] = charMap[char] + 1 || 1   }   return charMap; }
